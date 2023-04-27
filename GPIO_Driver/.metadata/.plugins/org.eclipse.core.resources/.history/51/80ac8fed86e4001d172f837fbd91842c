@@ -1,0 +1,50 @@
+
+/**************************************************************************************************
+ *  Name        : GPIO_Driver.c
+ *  Description : Test GPIO driver
+ *  Created on  : Apr 26, 2023
+ *  Author      : Sarah
+ ***************************************************************************************************/
+
+#include "gpio.h"
+#include <avr/delay.h>
+
+int main(void)
+{
+
+	GPIO_setupPinDirection(PORTA_ID,PIN3_ID,PIN_INPUT); /* PA3 Input Pin */
+	GPIO_setupPinDirection(PORTA_ID,PIN4_ID,PIN_INPUT); /* PA4 Input Pin */
+
+	GPIO_setupPortDirection(PORTD_ID,PORT_OUTPUT); /* All PORTD pins are output*/
+	GPIO_writePort(PORTD_ID,0x00); /* Turn OFF all leds */
+
+	while(1)
+	{
+		/* Read PA3 pin value */
+		if (GPIO_readPin(PORTA_ID,PIN3_ID) == LOGIC_HIGH )
+		{
+			/*if pressed toggle all Even LEDS*/
+
+			GPIO_writePin(PORTD_ID,0x55);
+			_delay_ms(500);
+			GPIO_writePin(PORTD_ID,0x00);
+			_delay_ms(500);
+
+		}
+		/* Read PA4 Pin Value */
+				else if(GPIO_readPin(PORTA_ID,PIN4_ID) == LOGIC_HIGH)
+				{
+					/* Toggle All Odd LEDS*/
+					GPIO_writePort(PORTD_ID,0xAA);
+					_delay_ms(500);
+					GPIO_writePort(PORTD_ID,0x00);
+					_delay_ms(500);
+				}
+				else
+				{
+					/* Turn OFF all LEDS */
+					GPIO_writePort(PORTD_ID,0x00);
+				}
+
+			}
+		}

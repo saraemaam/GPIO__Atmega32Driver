@@ -1,0 +1,18 @@
+ /******************************************************************************
+ *
+ * Module: Common - Macros
+ *
+ * File Name: Common_Macros.h
+ *
+ * Description: Commonly used Macros
+ *
+ * Author: Sarah Abuzaid
+ *
+ *******************************************************************************/
+
+#ifndef COMMON_MACROS_H_
+#define COMMON_MACROS_H_
+
+
+
+#endif /* COMMON_MACROS_H_ */
